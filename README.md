@@ -1,1 +1,1 @@
-"# QtChess" 
+My first attempt to Chess programming.
