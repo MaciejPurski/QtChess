@@ -3,6 +3,8 @@
 #include <utility>
 #include "chessboard.h"
 
+/* class keeps information on game logic including its state. Provides interface for move checking in order to communicate
+ * with the gui */
 class Game
 {
 public:
@@ -18,9 +20,7 @@ public:
     static Bitboard mapToBitboard(const Move& input);
     static ChessBoard gameState;
 private:
-
     Game();
-
 };
 
 #endif // GAME_H

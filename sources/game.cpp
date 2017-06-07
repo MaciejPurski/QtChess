@@ -18,28 +18,28 @@ bool Game::checkMove(const Move& src, const Move& dst)
     gameState.updateChecks();
 
     //move cannot lead to one's check
-    if (state == WhiteMove && gameState.isCheckedWhite) {
+    if (state == WhiteMove && gameState.getCheckedWhite()) {
         gameState.saveMove(to,from);
         return false;
     }
 
-    if (state == BlackMove && gameState.isCheckedBlack) {
+    if (state == BlackMove && gameState.getCheckedBlack()) {
         gameState.saveMove(to,from);
         return false;
     }
 
     //change game state if it was mat
-    if (gameState.isMatWhite) {
+    if (gameState.getMatWhite()) {
         state = Finished;
         checkState = WhiteMat;
     }
 
-    if (gameState.isMatBlack) {
+    if (gameState.getMatBlack()) {
         state = Finished;
         checkState = BlackMat;
     }
-    qDebug()<<"White Check: "<<gameState.isCheckedWhite << "Black Check: " << gameState.isCheckedBlack;
-    qDebug()<<"White Mat: "<<gameState.isMatWhite << "Black Mat: " << gameState.isMatBlack;
+    qDebug()<<"White Check: "<<gameState.getCheckedWhite() << "Black Check: " << gameState.getCheckedBlack();
+    qDebug()<<"White Mat: "<<gameState.getMatWhite() << "Black Mat: " << gameState.getMatBlack();
     return true;
 
 }

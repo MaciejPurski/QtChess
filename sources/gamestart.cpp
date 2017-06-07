@@ -5,8 +5,8 @@ GameStart::GameStart(Clock *nclock, Board *nboard, QWidget *parent) :
     clock(nclock), board(nboard), QDialog(parent)
 {
     mainLayout = new QVBoxLayout(this);
-    layout1 = new QHBoxLayout(this);
-    layout2= new QHBoxLayout(this);
+    layout1 = new QHBoxLayout();
+    layout2= new QHBoxLayout();
     this->setWindowTitle("New Game");
 
     white = new QRadioButton("White", this);
@@ -31,8 +31,6 @@ GameStart::GameStart(Clock *nclock, Board *nboard, QWidget *parent) :
     mainLayout->addWidget(timeSet);
     mainLayout->addLayout(layout2);
 
-
-
     connect(start, SIGNAL(clicked(bool)), this, SLOT(initializeGame()));
     connect(cancel, SIGNAL(clicked(bool)), this, SLOT(close()));
 
@@ -46,6 +44,5 @@ void GameStart::initializeGame()
     clock->initialize(time);
     board->initialize(black->isChecked() ? Board::Color::BLACK : Board::Color::WHITE);
     this->close();
-
 }
 

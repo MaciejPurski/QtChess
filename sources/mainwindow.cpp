@@ -39,9 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuBar->addMenu(other);
     ui->centralWidget->setLayout(main);
 
-
-
-
 }
 
 MainWindow::~MainWindow()

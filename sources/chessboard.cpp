@@ -4,9 +4,7 @@
 
 
 ChessBoard::ChessBoard()
-{
-
-}
+{}
 
 void ChessBoard::initialize()
 {
@@ -93,8 +91,6 @@ ChessBoard::Bitboard ChessBoard::moveGeneratorPawn(Bitboard board, BitboardsSet*
 }
 
 
-
-
 ChessBoard::Bitboard ChessBoard::moveGeneratorKnight(Bitboard board, BitboardsSet* set)
 {
     Bitboard result=0;
@@ -172,15 +168,12 @@ ChessBoard::Bitboard ChessBoard::moveGeneratorKing(Bitboard board, BitboardsSet 
 
 ChessBoard::Bitboard ChessBoard::moveGeneratorVandH(Bitboard board, BitboardsSet *set)
 {
-
     Bitboard occupied=~empty;
     Bitboard reverseOccupied=reverse(occupied);
     Bitboard reverseBoard=reverse(board);
     int number = mapToNumber(board); //field's position number
     Bitboard currentFile=FileMask[number % 8];
     Bitboard currentRank=RankMask[number /8];
-
-
 
     Bitboard horizontal=(occupied - 2*board) ^ reverse(reverseOccupied - 2*reverseBoard);
 
@@ -342,10 +335,7 @@ ChessBoard::Bitboard ChessBoard::reverse(Bitboard n)
 ChessBoard::Bitboard ChessBoard::checkLine(BitboardsSet *set){
     // if any of the enemy's attacking bitboards intersects with the king, it is checked
     BitboardsSet *enemy = &black;
-
-
-
-    if(set==enemy)
+     if(set==enemy)
         enemy = &white;
 
     Bitboard temp = enemy->pawns;
@@ -612,7 +602,6 @@ void ChessBoard::updateChecks()
 
     }
 
-
 }
 
 
@@ -628,3 +617,20 @@ int ChessBoard::mapToNumber(Bitboard board)
 
     return number;
 }
+
+bool ChessBoard::getCheckedWhite() {
+    return isCheckedWhite;
+}
+
+bool ChessBoard::getCheckedBlack() {
+    return isCheckedBlack;
+}
+
+bool ChessBoard::getMatBlack() {
+    return isMatBlack;
+}
+
+bool ChessBoard::getMatWhite() {
+    return isMatWhite;
+}
+

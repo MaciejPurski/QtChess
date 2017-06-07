@@ -9,8 +9,6 @@ Board::Board (QWidget *parent) : QGraphicsView(parent)
     if(picture.isNull()==true)
         qDebug() << "Fail not loaded";
 
-
-
     scene->setSceneRect(0.0, 0.0, 640.0, 640.0);
     black.resize(16);
     white.resize(16);
@@ -18,8 +16,6 @@ Board::Board (QWidget *parent) : QGraphicsView(parent)
     this->setFixedSize(642, 642);
     this->setBackgroundBrush(QBrush(picture));
     this->setScene(scene);
-
-
 }
 
 
@@ -77,8 +73,7 @@ void Board::loadPiecesSet(Color color)
 
 void Board::setPieces(Color color)
 {
-
-    // pieces set that should be visible as a first player or second
+     // pieces set that should be visible as a first player or second
     QVector<Piece*> *first = &white;
     QVector<Piece*> *second = &black;
 
@@ -155,6 +150,7 @@ void Board::initialize(Color color)
     deactivatePieces(Color::BLACK);
 
     Game::gameState.initialize();
+    Game::checkState = Game::NotChecked;
 }
 
 void Board::move(Piece *toMove, const QPointF &prev, const QPointF &next)
@@ -225,8 +221,14 @@ void Board::deactivatePieces(Color color)
 
 void Board::setGameFinished() {
     QGraphicsTextItem * io = new QGraphicsTextItem;
+    io->setTextWidth(50);
     io->setPos(300,300);
-    io->setPlainText("GAME FINISHED");
+    QString winner;
+    if (Game::checkState == Game::WhiteMat)
+        winner = "BLACK WON";
+    else
+        winner = "WHITE WON";
+    io->setPlainText(winner);
 
     scene->addItem(io);
 
@@ -235,4 +237,8 @@ void Board::setGameFinished() {
     // TODO komunikacja z zegarem
 }
 
+
+void Board::setGameFinishedSlot() {
+    setGameFinished();
+}
 

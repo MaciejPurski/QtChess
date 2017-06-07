@@ -13,6 +13,7 @@
 #include "board.h"
 #include "clock.h"
 
+/* Dialog used to initialize the game */
 class GameStart : public QDialog
 {
     Q_OBJECT

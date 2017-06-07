@@ -10,6 +10,7 @@
 #include "piece.h"
 #include "clock.h"
 
+/* GUI representation of the board. Communicates with the game engine using move method */
 class Board : public QGraphicsView
 {
 
@@ -23,7 +24,6 @@ public:
     void move(Piece *toMove, const QPointF &prev, const QPointF &next);
 
 private:
-
     QGraphicsScene *scene;
     QVector<Piece*> white;
     QVector<Piece*> black;
@@ -38,6 +38,9 @@ private:
     void activatePieces(Color color);
     void deactivatePieces(Color color);
     void setGameFinished();
+
+public slots:
+    void setGameFinishedSlot();
 
 };
 

@@ -1,7 +1,8 @@
 #ifndef CHESSBOARD_H
 #define CHESSBOARD_H
 
-
+/* Logical representation of the ChessBoard. Keeps track of the pieces positions and ensures that all the moves are legal in terms of
+ * game rules. It also provides methods for moves generation. */
 class ChessBoard
 {
 typedef unsigned long long Bitboard;
@@ -14,15 +15,16 @@ public:
     bool isValid(Bitboard src, Bitboard dst); // checks if the move is valid in terms of game rules
     void saveMove(Bitboard src, Bitboard dst); // saves move without checking its validility
     void updateChecks();
-
-    bool isCheckedWhite, isCheckedBlack, isMatWhite, isMatBlack;
-
-
     void initialize();
+    bool getCheckedWhite();
+    bool getCheckedBlack();
+    bool getMatBlack();
+    bool getMatWhite();
 
 private:
     BitboardsSet white, black;
     Bitboard empty;
+    bool isCheckedWhite, isCheckedBlack, isMatWhite, isMatBlack;
 
     const Bitboard RankMask[8]={
         0xFF, 0xFF00, 0xFF0000, 0xFF000000, 0xFF00000000, 0xFF0000000000, 0xFF000000000000, 0xFF00000000000000
@@ -42,7 +44,6 @@ private:
         0x8040201008040201, 0x4020100804020100, 0x2010080402010000, 0x1008040201000000,
         0x804020100000000, 0x402010000000000, 0x201000000000000, 0x100000000000000
     };
-
 
 
     Bitboard moveGeneratorPawn(Bitboard board, BitboardsSet *set);
@@ -66,7 +67,6 @@ private:
     Bitboard checkLine(BitboardsSet *set); //return attacked line, if the king is checked, else returns 0
 
 
-
     Bitboard reverse (Bitboard arg);
     int mapToNumber(Bitboard board);
     Bitboard findLSB(Bitboard n);
@@ -77,8 +77,6 @@ private:
       T q = ((p>>k)^p)&m;
       return p^q^(q<<k);
     }
-
-
 
 };
 
