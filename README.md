@@ -14,7 +14,7 @@ for all pieces and checking checks and mat based on all generated moves.
 ### Building procedure
 1. Create Makefile by executing `qmake`
 2. execute `make`
-3. Run app `./filtr`
+3. Run app `./QtChess`
 
 ## Using app
 To start a game you have to choose "new game" in a menu bar, choose time and game side. Game engine should find out if the game 
